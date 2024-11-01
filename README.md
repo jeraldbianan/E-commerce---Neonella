@@ -2,15 +2,14 @@
 
 <h2>Personal Project</h2>
 
-<p>An e-commerce web application built with Vue3, Laravel and TailwindCSS</p>
+<p>An e-commerce web application primarily built using Vue3, Laravel, TailwindCSS, Stripe API, and AlpineJS.</p>
 
 <h3>Features</h3>
 
+- Admin Dashboard
 - CRUD
 - Authentication
 - Eloquent ORM
-- Stripe API
-- Admin Dashboard
 - TBD...
 
 ⚠️⚠️**Under Development**⚠️⚠️
