@@ -1,17 +1,19 @@
 <script setup></script>
 
 <template>
-  <header>
-    <!-- Header -->
-  </header>
+  <div class="flex flex-col items-center">
+    <header>
+      <!-- Header -->
+    </header>
 
-  <main>
-    <RouterView />
-  </main>
+    <main class="container">
+      <RouterView />
+    </main>
 
-  <footer>
-    <!-- Footer -->
-  </footer>
+    <footer>
+      <!-- Footer -->
+    </footer>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
