@@ -34,7 +34,9 @@
               >Password</label
             >
             <div class="text-sm">
-              <a href="#" class="text-accent hover:text-accent/80 font-semibold"
+              <a
+                href="#"
+                class="text-accent hover:text-accent/80 focus-visible:outline-accent font-semibold"
                 >Forgot password?</a
               >
             </div>
@@ -64,7 +66,9 @@
       <p class="text-dark mt-10 text-center text-sm/6">
         Not a member?
         {{ ' ' }}
-        <a href="#" class="text-accent hover:text-accent/80 font-semibold"
+        <a
+          href="#"
+          class="text-accent hover:text-accent/80 focus-visible:outline-accent font-semibold"
           >Register</a
         >
       </p>
