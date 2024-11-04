@@ -6,7 +6,7 @@
       <!-- Header -->
     </header>
 
-    <main class="container">
+    <main>
       <RouterView />
     </main>
 
