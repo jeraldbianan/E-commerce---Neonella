@@ -43,7 +43,7 @@ onMounted(() => {
         Remember your password?
         <RouterLink
           :to="{ name: 'login' }"
-          class="text-accent/80 hover:text-accent"
+          class="font-semibold text-accent hover:text-accent/80"
           >Login</RouterLink
         >
       </p>
