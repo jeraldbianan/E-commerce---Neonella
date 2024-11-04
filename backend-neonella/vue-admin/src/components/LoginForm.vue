@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import InputField from './ui/InputField.vue'
+
+const loginRef = ref(null)
+
+onMounted(() => {
+  loginRef.value.$el.focus()
+})
+</script>
 
 <template>
   <form class="space-y-6" action="#" method="POST">
@@ -7,13 +16,14 @@
         >Email address</label
       >
       <div class="mt-2">
-        <input
+        <InputField
+          ref="loginRef"
           id="email"
           name="email"
           type="email"
           autocomplete="email"
-          required=""
-          class="block w-full rounded-md border-0 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm/6"
+          placeholder="johndoe@test.com"
+          required
         />
       </div>
     </div>
@@ -24,22 +34,15 @@
           >Password</label
         >
         <div class="text-sm">
-          <a
-            href="#"
+          <RouterLink
+            :to="{ name: 'requestPasswordReset' }"
             class="font-semibold text-accent hover:text-accent/80 focus-visible:outline-accent"
-            >Forgot password?</a
-          >
+            >Forgot password?
+          </RouterLink>
         </div>
       </div>
       <div class="mt-2">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          required=""
-          class="block w-full rounded-md border-0 py-1.5 text-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm/6"
-        />
+        <InputField id="password" name="password" type="password" required />
       </div>
     </div>
 
