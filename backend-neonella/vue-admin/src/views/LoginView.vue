@@ -1,28 +1,67 @@
 <script setup>
-import LoginForm from '@/components/LoginForm.vue'
-import NeonellaLogo from '@/assets/images/neonella-logo.svg'
+import { onMounted, ref } from 'vue'
+import GuestLayout from '@/components/GuestLayout.vue'
+import InputField from '@/components/ui/InputField.vue'
+
+const loginRef = ref(null)
+
+onMounted(() => {
+  loginRef.value.$el.focus()
+})
+
+const login = () => {
+  console.log('login')
+}
 </script>
 
 <template>
-  <div
-    class="flex min-h-screen w-screen items-center justify-center bg-[url('@/assets/images/login-bg.jpg')] bg-cover bg-center bg-no-repeat px-4 md:px-0"
-  >
-    <div
-      class="flex max-w-[400px] flex-1 -translate-y-20 flex-col items-center rounded-lg border bg-secondary p-10"
-    >
-      <img :src="NeonellaLogo" alt="Neonella Logo" class="h-32 w-32" />
-
-      <h1
-        class="text-center font-pd text-3xl/3 font-medium leading-none text-dark"
-      >
-        Sign in to your account
-      </h1>
-
-      <div class="mb-5 mt-5 w-full">
-        <LoginForm />
+  <GuestLayout title="Sign in to your account">
+    <form @submit.prevent="login" class="space-y-6" method="POST">
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-dark"
+          >Email address</label
+        >
+        <div class="mt-2">
+          <InputField
+            ref="loginRef"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="johndoe@test.com"
+            required
+          />
+        </div>
       </div>
-    </div>
-  </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-dark"
+            >Password</label
+          >
+          <div class="text-sm">
+            <RouterLink
+              :to="{ name: 'requestPasswordReset' }"
+              class="font-semibold text-accent hover:text-accent/80 focus-visible:outline-accent"
+              >Forgot password?
+            </RouterLink>
+          </div>
+        </div>
+        <div class="mt-2">
+          <InputField id="password" name="password" type="password" required />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="flex w-full justify-center rounded-md bg-accent px-3 py-1.5 text-sm/6 font-semibold text-light shadow-sm hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+  </GuestLayout>
 </template>
 
 <style lang="scss" scoped></style>
