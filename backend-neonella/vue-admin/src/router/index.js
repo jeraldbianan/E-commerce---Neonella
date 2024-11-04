@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AppLayout from '@/components/AppLayout.vue'
+
 import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import RequestPasswordReset from '@/views/RequestPasswordResetView.vue'
@@ -6,14 +8,21 @@ import ResetPassword from '@/views/ResetPasswordView.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'login',
-    component: Login,
+    path: '/app',
+    name: 'app',
+    component: AppLayout,
+    children: [
+      {
+        path: 'dashboard',
+        name: 'app.dashboard',
+        component: Dashboard,
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
   {
     path: '/request-password-reset',
