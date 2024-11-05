@@ -1,9 +1,29 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import Sidebar from "@/components/SideBar.vue";
-import TopHeader from "@/components/TopHeader.vue";
+import NavBar from "@/components/NavBar.vue";
 
 const sidebarOpened = ref(true);
+
+onMounted(() => {
+  if (window.innerWidth < 768) {
+    sidebarOpened.value = false;
+  }
+
+  window.addEventListener("resize", handleSidebarUpdate);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", handleSidebarUpdate);
+});
+
+const handleSidebarUpdate = () => {
+  if (window.innerWidth < 768) {
+    sidebarOpened.value = false;
+  } else {
+    sidebarOpened.value = true;
+  }
+};
 
 const toggleSidebar = () => {
   sidebarOpened.value = !sidebarOpened.value;
@@ -17,7 +37,7 @@ const toggleSidebar = () => {
 
     <!-- main content -->
     <div class="flex-1">
-      <TopHeader @toggle-sidebar="toggleSidebar" />
+      <NavBar @toggle-sidebar="toggleSidebar" />
 
       <!-- content -->
       <main class="p-6">
