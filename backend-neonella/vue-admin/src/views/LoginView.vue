@@ -1,17 +1,17 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import GuestLayout from '@/components/GuestLayout.vue'
-import InputField from '@/components/ui/InputField.vue'
+import { onMounted, ref } from "vue";
+import GuestLayout from "@/components/GuestLayout.vue";
+import InputField from "@/components/ui/InputField.vue";
 
-const loginRef = ref(null)
+const loginRef = ref(null);
 
 onMounted(() => {
-  loginRef.value.$el.focus()
-})
+  loginRef.value.$el.focus();
+});
 
 const login = () => {
-  console.log('login')
-}
+  console.log("login");
+};
 </script>
 
 <template>

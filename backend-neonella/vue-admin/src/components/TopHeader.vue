@@ -3,9 +3,11 @@ import {
   Bars4Icon,
   UserCircleIcon,
   ArrowLeftStartOnRectangleIcon,
-} from '@heroicons/vue/24/outline'
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+} from "@heroicons/vue/24/outline";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/20/solid";
+
+const emit = defineEmits(["toggleSidebar"]);
 </script>
 
 <template>
@@ -14,16 +16,15 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid'
     role="banner"
   >
     <button
+      @click="emit('toggleSidebar')"
       class="rounded-full p-2 transition-colors duration-300 hover:bg-secondary focus:outline-accent"
-      aria-label="Toggle menu"
+      aria-label="Toggle sidebar menu"
     >
-      <Bars4Icon class="w-6" />
+      <Bars4Icon class="w-6" aria-label="Bars icon" />
     </button>
     <div>
       <Menu as="div" class="relative inline-block text-left">
-        <MenuButton
-          class="group flex items-center gap-2 p-2 focus:outline-accent"
-        >
+        <MenuButton class="group flex items-center gap-2 p-2 focus:outline-accent">
           <img
             src="https://randomuser.me/api/portraits/women/66.jpg"
             alt="User avatar"

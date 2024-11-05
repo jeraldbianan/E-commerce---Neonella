@@ -1,9 +1,9 @@
 <script setup>
-import NeonellaLogo from '@/assets/images/neonella-logo.svg'
+import NeonellaLogo from "@/assets/images/neonella-logo.svg";
 
 defineProps({
   title: String,
-})
+});
 </script>
 
 <template>
@@ -15,9 +15,7 @@ defineProps({
     >
       <img :src="NeonellaLogo" alt="Neonella Logo" class="h-32 w-32" />
 
-      <h1
-        class="text-center font-pd text-3xl/3 font-medium leading-none text-dark"
-      >
+      <h1 class="text-center font-pd text-3xl/3 font-medium leading-none text-dark">
         {{ title }}
       </h1>
 

@@ -1,40 +1,45 @@
 <script setup>
-import NeonellaLogo from '@/assets/images/neonella-logo.svg'
+import NeonellaLogo from "@/assets/images/neonella-logo.svg";
 import {
   HomeIcon,
   UsersIcon,
   ListBulletIcon,
   ChartBarIcon,
-} from '@heroicons/vue/24/outline'
+} from "@heroicons/vue/24/outline";
+
+defineProps({
+  status: Boolean,
+});
 
 const links = [
   {
-    name: 'app.dashboard',
+    name: "app.dashboard",
     icon: HomeIcon,
-    label: 'Dashboard',
+    label: "Dashboard",
   },
   {
-    // name: 'app.users',
+    name: "app.products",
     icon: UsersIcon,
-    label: 'Products',
+    label: "Products",
   },
   {
-    // name: 'app.requests',
+    name: "app.users",
     icon: ListBulletIcon,
-    label: 'Users',
+    label: "Users",
   },
   {
-    // name: 'app.requests',
+    name: "app.reports",
     icon: ChartBarIcon,
-    label: 'Reports',
+    label: "Reports",
   },
-]
+];
 </script>
 
 <template>
   <aside
-    class="flex min-h-screen w-[200px] flex-col items-center bg-secondary"
+    class="flex min-h-screen w-[200px] flex-col items-center bg-secondary transition-all"
     aria-label="Sidebar"
+    :aria-hidden="!status"
   >
     <img :src="NeonellaLogo" alt="Neonella Logo" class="h-32 w-32" />
     <nav class="w-full">
@@ -43,14 +48,12 @@ const links = [
           <RouterLink
             :to="{ name: link.name }"
             class="flex items-center rounded-lg px-2 py-2 transition-transform duration-150 hover:bg-accent hover:text-white focus:outline-accent active:scale-95"
+            exact-active-class="bg-accent text-white"
             :aria-label="`Navigate to ${link.label}`"
+            :tabindex="status ? 0 : -1"
           >
             <span class="mr-2">
-              <component
-                :is="link.icon"
-                class="w-5"
-                aria-hidden="true"
-              ></component>
+              <component :is="link.icon" class="w-5" aria-hidden="true"></component>
             </span>
             <span>{{ link.label }}</span>
           </RouterLink>

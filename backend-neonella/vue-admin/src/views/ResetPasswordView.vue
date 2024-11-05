@@ -1,13 +1,13 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import GuestLayout from '@/components/GuestLayout.vue'
-import InputField from '@/components/ui/InputField.vue'
+import { onMounted, ref } from "vue";
+import GuestLayout from "@/components/GuestLayout.vue";
+import InputField from "@/components/ui/InputField.vue";
 
-const newPasswordRef = ref(null)
+const newPasswordRef = ref(null);
 
 onMounted(() => {
-  newPasswordRef.value.$el.focus()
-})
+  newPasswordRef.value.$el.focus();
+});
 </script>
 
 <template>
@@ -29,9 +29,7 @@ onMounted(() => {
       </div>
 
       <div>
-        <label
-          for="confirm_password"
-          class="block text-sm/6 font-medium text-dark"
+        <label for="confirm_password" class="block text-sm/6 font-medium text-dark"
           >Confirm Password</label
         >
         <div class="mt-2">

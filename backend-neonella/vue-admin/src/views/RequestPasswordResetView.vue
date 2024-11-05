@@ -1,13 +1,13 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import GuestLayout from '@/components/GuestLayout.vue'
-import InputField from '@/components/ui/InputField.vue'
+import { onMounted, ref } from "vue";
+import GuestLayout from "@/components/GuestLayout.vue";
+import InputField from "@/components/ui/InputField.vue";
 
-const emailRef = ref(null)
+const emailRef = ref(null);
 
 onMounted(() => {
-  emailRef.value.$el.focus()
-})
+  emailRef.value.$el.focus();
+});
 </script>
 
 <template>
