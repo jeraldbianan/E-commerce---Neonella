@@ -58,11 +58,7 @@ const emit = defineEmits(["toggleSidebar"]);
                   ]"
                   role="menuitem"
                 >
-                  <UserCircleIcon
-                    :active="active"
-                    class="mr-2 h-6 w-6"
-                    aria-hidden="true"
-                  />
+                  <UserCircleIcon :active="active" class="mr-2 w-5" aria-hidden="true" />
                   Profile
                 </button>
               </MenuItem>
@@ -76,7 +72,7 @@ const emit = defineEmits(["toggleSidebar"]);
                 >
                   <ArrowLeftStartOnRectangleIcon
                     :active="active"
-                    class="mr-2 h-6 w-6"
+                    class="mr-2 w-5"
                     aria-hidden="true"
                   />
                   Logout

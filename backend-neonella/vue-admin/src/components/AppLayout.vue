@@ -37,6 +37,7 @@ const toggleSidebar = () => {
 
     <!-- main content -->
     <div class="flex-1">
+      <!-- header -->
       <NavBar @toggle-sidebar="toggleSidebar" />
 
       <!-- content -->

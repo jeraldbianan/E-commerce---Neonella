@@ -10,6 +10,8 @@ import Login from '@/views/LoginView.vue';
 import RequestPasswordReset from '@/views/RequestPasswordResetView.vue';
 import ResetPassword from '@/views/ResetPasswordView.vue';
 
+import { useUserStore } from '@/store/user';
+
 const routes = [
   {
     path: '/',
@@ -19,6 +21,9 @@ const routes = [
     path: '/app',
     name: 'app',
     component: AppLayout,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         path: 'dashboard',
@@ -46,22 +51,42 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      requiresGuest: true,
+    },
   },
   {
     path: '/request-password-reset',
     name: 'requestPasswordReset',
     component: RequestPasswordReset,
+    meta: {
+      requiresGuest: true,
+    },
   },
   {
     path: '/reset-password/:token',
     name: 'resetPassword',
     component: ResetPassword,
+    meta: {
+      requiresGuest: true,
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  if (to.meta.requiresAuth && userStore.user.token === null) {
+    next({ name: 'login' });
+  } else if (to.meta.requiresGuest && userStore.user.token !== null) {
+    next({ name: 'app.dashboard' });
+  } else {
+    next();
+  }
 });
 
 export default router;
