@@ -2,17 +2,22 @@
 import { onMounted, ref } from "vue";
 import GuestLayout from "@/components/GuestLayout.vue";
 import InputField from "@/components/ui/InputField.vue";
+import CustomButton from "@/components/ui/CustomButton.vue";
 
 const emailRef = ref(null);
 
 onMounted(() => {
   emailRef.value.$el.focus();
 });
+
+function requestPasswordReset() {
+  console.log("password reset requested");
+}
 </script>
 
 <template>
   <GuestLayout title="Forgot password">
-    <form class="space-y-6" method="POST">
+    <form @submit.prevent="requestPasswordReset" class="space-y-6" method="POST">
       <div>
         <label for="email" class="block text-sm/6 font-medium text-dark"
           >Email address</label
@@ -31,12 +36,7 @@ onMounted(() => {
       </div>
 
       <div>
-        <button
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-accent px-3 py-1.5 text-sm/6 font-semibold text-light shadow-sm hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          Send Link
-        </button>
+        <CustomButton type="submit" class="w-full py-2">Send Link</CustomButton>
       </div>
 
       <p class="text-center">

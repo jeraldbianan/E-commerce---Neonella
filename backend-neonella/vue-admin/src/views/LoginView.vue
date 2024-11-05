@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import GuestLayout from "@/components/GuestLayout.vue";
 import InputField from "@/components/ui/InputField.vue";
+import CustomButton from "@/components/ui/CustomButton.vue";
 
 const loginRef = ref(null);
 
@@ -53,12 +54,7 @@ const login = () => {
       </div>
 
       <div>
-        <button
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-accent px-3 py-1.5 text-sm/6 font-semibold text-light shadow-sm hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          Sign in
-        </button>
+        <CustomButton type="submit" class="w-full py-2">Sign in</CustomButton>
       </div>
     </form>
   </GuestLayout>
