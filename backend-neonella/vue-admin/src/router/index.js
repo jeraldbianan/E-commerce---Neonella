@@ -8,6 +8,10 @@ import ResetPassword from '@/views/ResetPasswordView.vue'
 
 const routes = [
   {
+    path: '/',
+    redirect: '/app/dashboard',
+  },
+  {
     path: '/app',
     name: 'app',
     component: AppLayout,

@@ -1,5 +1,6 @@
 <script setup>
 import Sidebar from '@/components/SideBar.vue'
+import TopHeader from '@/components/TopHeader.vue'
 </script>
 
 <template>
@@ -9,11 +10,13 @@ import Sidebar from '@/components/SideBar.vue'
 
     <!-- main content -->
     <div class="flex-1">
-      <header class="h-8 bg-white shadow">Header</header>
+      <TopHeader />
 
       <!-- content -->
-      <main>
-        <RouterView></RouterView>
+      <main class="p-6">
+        <div class="rounded-md bg-secondary p-4">
+          <RouterView></RouterView>
+        </div>
       </main>
 
       <!-- content -->
