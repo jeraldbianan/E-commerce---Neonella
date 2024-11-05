@@ -1,15 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppLayout from '@/components/AppLayout.vue';
 
-import Dashboard from '@/views/DashboardView.vue';
-import Products from '@/views/ProductsView.vue';
-import Users from '@/views/UsersView.vue';
-import Reports from '@/views/ReportsView.vue';
-
-import Login from '@/views/LoginView.vue';
-import RequestPasswordReset from '@/views/RequestPasswordResetView.vue';
-import ResetPassword from '@/views/ResetPasswordView.vue';
-
 import { useUserStore } from '@/store/user';
 
 const routes = [
@@ -28,29 +19,29 @@ const routes = [
       {
         path: 'dashboard',
         name: 'app.dashboard',
-        component: Dashboard,
+        component: () => import('@/views/DashboardView.vue'),
       },
       {
         path: 'products',
         name: 'app.products',
-        component: Products,
+        component: () => import('@/views/ProductsView.vue'),
       },
       {
         path: 'users',
         name: 'app.users',
-        component: Users,
+        component: () => import('@/views/UsersView.vue'),
       },
       {
         path: 'reports',
         name: 'app.reports',
-        component: Reports,
+        component: () => import('@/views/ReportsView.vue'),
       },
     ],
   },
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: () => import('@/views/LoginView.vue'),
     meta: {
       requiresGuest: true,
     },
@@ -58,7 +49,7 @@ const routes = [
   {
     path: '/request-password-reset',
     name: 'requestPasswordReset',
-    component: RequestPasswordReset,
+    component: () => import('@/views/RequestPasswordResetView.vue'),
     meta: {
       requiresGuest: true,
     },
@@ -66,10 +57,15 @@ const routes = [
   {
     path: '/reset-password/:token',
     name: 'resetPassword',
-    component: ResetPassword,
+    component: () => import('@/views/ResetPasswordView.vue'),
     meta: {
       requiresGuest: true,
     },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/NotFoundView.vue'),
   },
 ];
 
