@@ -18,7 +18,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await axiosClient.post('/login', userData);
       if (response.status === 200) {
-        user.value.data = response.data.user;
         user.value.token = response.data.token;
 
         if (userData.remember) {
@@ -27,6 +26,8 @@ export const useAuthStore = defineStore('auth', () => {
           sessionStorage.setItem('token', response.data.token);
         }
       }
+
+      await fetchUser();
     } catch (err) {
       errorMsg.value = err.response.data.message;
       throw err;
