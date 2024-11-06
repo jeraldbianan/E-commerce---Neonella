@@ -59,7 +59,7 @@ export const useAuthStore = defineStore('auth', () => {
   const fetchUser = async () => {
     try {
       const response = await axiosClient.get('/user');
-      user.value.data = response.data;
+      user.value.data = response.data.user;
     } catch (err) {
       console.error('Failed to fetch user:', err);
       logout();

@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import { useAuthStore } from "@/store/auth";
 import { useRouter } from "vue-router";
 
@@ -14,6 +15,8 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 const emit = defineEmits(["toggleSidebar"]);
+
+const currentUser = computed(() => authStore.user.data);
 
 const logout = async () => {
   try {
@@ -45,7 +48,7 @@ const logout = async () => {
             alt="User avatar"
             class="w-10 rounded-full"
           />
-          <small>Jane Doe</small>
+          <small>{{ currentUser?.name }}</small>
           <ChevronDownIcon
             class="h-6 w-6 text-dark transition-colors duration-300 group-hover:text-dark/60"
             aria-hidden="true"
