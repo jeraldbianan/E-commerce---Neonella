@@ -6,6 +6,7 @@ import GuestLayout from "@/components/GuestLayout.vue";
 import InputField from "@/components/ui/InputField.vue";
 import CustomButton from "@/components/ui/CustomButton.vue";
 import { useRouter } from "vue-router";
+import LoadingSpinner from "@/components/icons/LoadingSpinner.vue";
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -35,6 +36,10 @@ const login = async () => {
 <template>
   <GuestLayout title="Sign in to your account">
     <form @submit.prevent="login" class="space-y-6" method="POST">
+      <div v-if="authStore.errorMsg" class="font-semibold text-danger">
+        {{ authStore.errorMsg }}
+      </div>
+
       <div>
         <label for="email" class="block text-sm/6 font-medium text-dark"
           >Email address</label
@@ -92,7 +97,13 @@ const login = async () => {
       </div>
 
       <div>
-        <CustomButton type="submit" class="w-full py-2">Sign in</CustomButton>
+        <CustomButton type="submit" :disabled="authStore.loading" class="w-full py-2">
+          <LoadingSpinner
+            v-if="authStore.loading"
+            class="mr-2 h-5 w-5 animate-spin font-black text-white"
+          />
+          <div v-else>Sign in</div>
+        </CustomButton>
       </div>
     </form>
   </GuestLayout>
