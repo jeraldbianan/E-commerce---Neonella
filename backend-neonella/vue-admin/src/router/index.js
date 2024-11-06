@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppLayout from '@/components/AppLayout.vue';
 
-import { useUserStore } from '@/store/user';
+import { useAuthStore } from '@/store/auth';
 
 const routes = [
   {
@@ -75,7 +75,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const userStore = useUserStore();
+  const userStore = useAuthStore();
   if (to.meta.requiresAuth && userStore.user.token === null) {
     next({ name: 'login' });
   } else if (to.meta.requiresGuest && userStore.user.token !== null) {

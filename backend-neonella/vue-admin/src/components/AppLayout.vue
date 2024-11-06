@@ -1,7 +1,11 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import Sidebar from "@/components/SideBar.vue";
 import NavBar from "@/components/NavBar.vue";
+import { useAuthStore } from "@/store/auth";
+import LoadingSpinner from "./icons/LoadingSpinner.vue";
+
+const authStore = useAuthStore();
 
 const sidebarOpened = ref(true);
 
@@ -17,6 +21,8 @@ onUnmounted(() => {
   window.removeEventListener("resize", handleSidebarUpdate);
 });
 
+const currentUser = computed(() => authStore.user.data);
+
 const handleSidebarUpdate = () => {
   if (window.innerWidth < 768) {
     sidebarOpened.value = false;
@@ -31,7 +37,7 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <div class="flex min-h-full">
+  <div v-if="currentUser?.id" class="flex min-h-full">
     <!-- sidebar -->
     <Sidebar :class="{ '-ml-[200px]': !sidebarOpened }" :status="sidebarOpened" />
 
@@ -52,6 +58,12 @@ const toggleSidebar = () => {
       </main>
 
       <!-- content -->
+    </div>
+  </div>
+  <div v-else class="flex h-screen items-center justify-center">
+    <div class="flex flex-col items-center gap-4">
+      <LoadingSpinner class="w-16 animate-spin text-accent" />
+      <p class="animate-pulse text-xl">Please wait...</p>
     </div>
   </div>
 </template>
