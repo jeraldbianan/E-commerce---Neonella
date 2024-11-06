@@ -1,4 +1,7 @@
 <script setup>
+import { useAuthStore } from "@/store/auth";
+import { useRouter } from "vue-router";
+
 import {
   Bars4Icon,
   UserCircleIcon,
@@ -7,7 +10,19 @@ import {
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 
+const authStore = useAuthStore();
+const router = useRouter();
+
 const emit = defineEmits(["toggleSidebar"]);
+
+const logout = async () => {
+  try {
+    await authStore.logout();
+    await router.push({ name: "login" });
+  } catch (err) {
+    console.error("Logout failed:", err);
+  }
+};
 </script>
 
 <template>
@@ -64,6 +79,7 @@ const emit = defineEmits(["toggleSidebar"]);
               </MenuItem>
               <MenuItem v-slot="{ active }">
                 <button
+                  @click="logout"
                   :class="[
                     active ? 'bg-accent text-white' : 'text-gray-900',
                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
